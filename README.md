@@ -1,4 +1,5 @@
-# Welcome to your Expo app 👋
+# Papera app 👋
+Silly soundboard app for android and iOS in React Native
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
