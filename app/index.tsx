@@ -1,4 +1,5 @@
-import { Text, View, Image, StyleSheet, Button, TouchableOpacity } from "react-native";
+import { Text, View, Image, StyleSheet, Button, TouchableOpacity, ScrollView, StatusBar } from "react-native";
+import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import { SoundCard } from "@/components/SoundCard";
 import { useState, useEffect } from 'react';
 import { Audio } from 'expo-av';
@@ -25,35 +26,63 @@ export default function Index() {
     { title: 'Splash', soundFileName: 'splash', iconName: 'water-outline' },
     { title: 'Amisci', soundFileName: 'splash', iconName: 'dog-side' },
     { title: 'Card 3', soundFileName: 'splash', iconName: 'music-note' },
+    { title: 'Card 3', soundFileName: 'splash', iconName: 'music-note' },
+    { title: 'Splash', soundFileName: 'splash', iconName: 'water-outline' },
+    { title: 'Amisci', soundFileName: 'splash', iconName: 'dog-side' },
+    { title: 'Card 3', soundFileName: 'splash', iconName: 'music-note' },
+    { title: 'Card 3', soundFileName: 'splash', iconName: 'music-note' },
+    { title: 'Splash', soundFileName: 'splash', iconName: 'water-outline' },
+    { title: 'Amisci', soundFileName: 'splash', iconName: 'dog-side' },
+    { title: 'Card 3', soundFileName: 'splash', iconName: 'music-note' },
+    { title: 'Card 3', soundFileName: 'splash', iconName: 'music-note' },
   ];
 
 
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 16,
-        backgroundColor: '#F6C527',
-      }}
-    >
-      <Image
-        source={require('@/assets/images/papera.png')}
-        style={{ width: 130, height: 117 }}
-      />
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container} edges={['top']}>
+        <View style={styles.header}>
+          <Image
+            source={require('@/assets/images/papera.png')}
+            style={{ width: 130, height: 117 }}
+          />
+        </View>
+        <ScrollView
+          style={{
+            flex: 1,
+            padding: 16,
+            backgroundColor: '#F6C527',
+          }}
+          contentContainerStyle={{
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
 
-      <View style={styles.cardContainer}>
-        { cardData.map((card, index) => (
-          <SoundCard key={index} cardData={card} onTrackSet={playSound} />
-        ))}
-      </View>
-    </View>
+          <View style={styles.cardContainer}>
+            { cardData.map((card, index) => (
+              <SoundCard key={index} cardData={card} onTrackSet={playSound} />
+            ))}
+            </View>
+          </ScrollView>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
+  header: {
+    alignItems: 'center',
+    backgroundColor: '#F6C527',
+    paddingBottom: 8,
+
+  },
+  container: {
+    flex: 1,
+    paddingTop: StatusBar.currentHeight,
+    backgroundColor: '#F6C527',
+  },
   cardContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',

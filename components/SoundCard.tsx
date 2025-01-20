@@ -1,4 +1,4 @@
-import { Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, TouchableHighlight, View } from "react-native";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useEffect, useState } from 'react';
 import { soundFiles } from './soundFiles';
@@ -26,10 +26,12 @@ export function SoundCard({ cardData, onTrackSet }: Props) {
   }
 
   return (
-    <TouchableOpacity style={styles.card} onPress={setTrack}>
-      <Icon name={iconName || "music-note"} size={24} color="#28251B" />
-      <Text>{title}</Text>
-    </TouchableOpacity>
+    <TouchableHighlight style={styles.card} onPress={setTrack} underlayColor='#EA913F' activeOpacity={1}>
+      <View>
+        <Icon name={iconName || "music-note"} size={24} color="#28251B" />
+        <Text>{title}</Text>
+      </View>
+    </TouchableHighlight>
   );
 }
 
@@ -43,10 +45,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     borderRadius: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 3,
-    elevation: 5,
+    // shadowColor: '#000',
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowHighlight: 0.3,
+    // shadowRadius: 3,
+    // elevation: 5,
   },
 });
