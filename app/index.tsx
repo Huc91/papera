@@ -1,29 +1,32 @@
 import { Text, View, Image, StyleSheet, Button, TouchableOpacity } from "react-native";
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useEffect, useState } from 'react';
+import { SoundCard } from "@/components/SoundCard";
+import { useState, useEffect } from 'react';
 import { Audio } from 'expo-av';
 
 export default function Index() {
+
   const [sound, setSound] = useState();
-
-  async function playSound() {
-    console.log('Loading Sound');
-    const { sound } = await Audio.Sound.createAsync( require('../assets/sounds/splash.mp3')
-    );
+  
+  async function playSound(track: { sound: Audio.Sound }) {
+    const { sound } = track;
     setSound(sound);
-
-    console.log('Playing Sound');
     await sound.playAsync();
   }
 
   useEffect(() => {
     return sound
       ? () => {
-          console.log('Unloading Sound');
           sound.unloadAsync();
         }
       : undefined;
   }, [sound]);
+
+  const cardData = [
+    { title: 'Splash', soundFileName: 'splash', iconName: 'water-outline' },
+    { title: 'Amisci', soundFileName: 'splash', iconName: 'dog-side' },
+    { title: 'Card 3', soundFileName: 'splash', iconName: 'music-note' },
+  ];
+
 
 
   return (
@@ -42,17 +45,9 @@ export default function Index() {
       />
 
       <View style={styles.cardContainer}>
-        <TouchableOpacity style={styles.card} onPress={playSound}>
-          <Icon name="water-outline" size={24} color="#28251B" />
-          <Text>Splash</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.card}>
-          <Icon name="dog-side" size={24} color="#28251B" />
-          <Text>Amisci</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.card}>
-          <Text>Card 3</Text>
-        </TouchableOpacity>
+        { cardData.map((card, index) => (
+          <SoundCard key={index} cardData={card} onTrackSet={playSound} />
+        ))}
       </View>
     </View>
   );
@@ -67,19 +62,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: '100%',
   },
-  card: {
-    margin: 8,
-    padding: 16,
-    width: '42%',
-    height: 150,
-    backgroundColor: '#E1B217',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    borderRadius: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 3,
-    elevation: 5,
-  },
 });
+
+
