@@ -2,6 +2,8 @@
 Silly doundboard app for android and iOS in React Native
 with old cartoons sound.
 
+![screenshot](https://github.com/[Huc91]/[papera]/blob/[branch]/image.jpg?raw=true)
+
 ## Get started
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
