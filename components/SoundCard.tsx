@@ -1,5 +1,5 @@
 import { Text, StyleSheet, TouchableHighlight, View } from "react-native";
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/FontAwesome6';
 import { useEffect, useState } from 'react';
 import { soundFiles } from './soundFiles';
 import { Audio } from 'expo-av';

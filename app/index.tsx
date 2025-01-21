@@ -6,6 +6,8 @@ import { Audio } from 'expo-av';
 
 export default function Index() {
 
+  StatusBar.setHidden(true);
+
   const [sound, setSound] = useState();
   
   async function playSound(track: { sound: Audio.Sound }) {
@@ -23,18 +25,16 @@ export default function Index() {
   }, [sound]);
 
   const cardData = [
-    { title: 'Splash', soundFileName: 'splash', iconName: 'water-outline' },
-    { title: 'Amisci', soundFileName: 'splash', iconName: 'dog-side' },
-    { title: 'Card 3', soundFileName: 'splash', iconName: 'music-note' },
-    { title: 'Card 3', soundFileName: 'splash', iconName: 'music-note' },
-    { title: 'Splash', soundFileName: 'splash', iconName: 'water-outline' },
-    { title: 'Amisci', soundFileName: 'splash', iconName: 'dog-side' },
-    { title: 'Card 3', soundFileName: 'splash', iconName: 'music-note' },
-    { title: 'Card 3', soundFileName: 'splash', iconName: 'music-note' },
-    { title: 'Splash', soundFileName: 'splash', iconName: 'water-outline' },
-    { title: 'Amisci', soundFileName: 'splash', iconName: 'dog-side' },
-    { title: 'Card 3', soundFileName: 'splash', iconName: 'music-note' },
-    { title: 'Card 3', soundFileName: 'splash', iconName: 'music-note' },
+    { title: 'Splash', soundFileName: 'splash', iconName: 'water' },
+    { title: 'Boing', soundFileName: 'boing', iconName: 'baseball' },
+    { title: 'Bonk', soundFileName: 'crash1', iconName: 'hammer' },
+    { title: 'Caduta 1', soundFileName: 'fall', iconName: 'person-falling' },
+    { title: 'Caduta 2', soundFileName: 'fall2', iconName: 'person-falling' },
+    { title: 'Freccia', soundFileName: 'palo', iconName: 'bullseye' },
+    { title: 'Swish', soundFileName: 'sbing', iconName: 'paw' },
+    { title: 'Liscio', soundFileName: 'slashes', iconName: 'hand-back-fist' },
+    { title: 'Viscini', soundFileName: 'vicini', iconName: 'dog' },
+    { title: 'Besughi', soundFileName: 'besughi', iconName: 'fish' },
   ];
 
 
