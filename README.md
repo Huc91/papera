@@ -2,7 +2,7 @@
 Silly doundboard app for android and iOS in React Native
 with old cartoons sound.
 
-![screenshot](https://github.com/[Huc91]/[papera]/blob/[branch]/image.jpg?raw=true)
+![screenshot](https://github.com/Huc91/papera/blob/main/screenshot.png?raw=true)
 
 ## Get started
 
