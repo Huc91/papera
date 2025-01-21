@@ -1,5 +1,6 @@
 # Papera app 👋
-Silly soundboard app for android and iOS in React Native
+Silly Soundboard app for android and iOS in React Native
+with old cartoons sound.
 
 ## Get started
 
