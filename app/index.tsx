@@ -3,6 +3,7 @@ import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import { SoundCard } from "@/components/SoundCard";
 import { useState, useEffect } from 'react';
 import { Audio } from 'expo-av';
+import { Link } from 'expo-router';
 
 export default function Index() {
 
@@ -65,9 +66,9 @@ export default function Index() {
               <SoundCard key={index} cardData={card} onTrackSet={playSound} />
             ))}
             </View>
-            <TouchableOpacity onPress={() => Linking.openURL('https://doc-hosting.flycricket.io/papera-soundboard-privacy-policy/43d158f1-020d-4df6-8169-a7d362f48133/privacy')}>
-              <Text style={styles.privacyText}>Privacy Policy</Text>
-            </TouchableOpacity>
+            <Link href="/info">
+              <Text style={styles.navButton}>About</Text>
+            </Link>
           </ScrollView>
           
       </SafeAreaView>
@@ -94,13 +95,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 20,
     width: '100%',
-    marginBottom: 20,
+    marginBottom: 40,
   },
-  privacyText: {
-    fontSize: 12,
-    color: 'blue',
-    textDecorationLine: 'underline',
-    marginTop: 10,
+  navButton: {
+    fontSize: 16,
+    color: '#212121',
+    marginBottom: 20,
   },
 });
 
