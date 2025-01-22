@@ -1,4 +1,4 @@
-import { Text, View, Image, StyleSheet, Button, TouchableOpacity, ScrollView, StatusBar } from "react-native";
+import { Text, View, Image, StyleSheet, Button, TouchableOpacity, ScrollView, StatusBar, Linking } from "react-native";
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import { SoundCard } from "@/components/SoundCard";
 import { useState, useEffect } from 'react';
@@ -65,7 +65,11 @@ export default function Index() {
               <SoundCard key={index} cardData={card} onTrackSet={playSound} />
             ))}
             </View>
+            <TouchableOpacity onPress={() => Linking.openURL('https://doc-hosting.flycricket.io/papera-soundboard-privacy-policy/43d158f1-020d-4df6-8169-a7d362f48133/privacy')}>
+              <Text style={styles.privacyText}>Privacy Policy</Text>
+            </TouchableOpacity>
           </ScrollView>
+          
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -91,6 +95,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: '100%',
     marginBottom: 20,
+  },
+  privacyText: {
+    fontSize: 12,
+    color: 'blue',
+    textDecorationLine: 'underline',
+    marginTop: 10,
   },
 });
 
