@@ -10,10 +10,23 @@ export default function Index() {
   StatusBar.setHidden(true);
 
   const [sound, setSound] = useState();
-  
-  async function playSound(track: { sound: Audio.Sound }) {
+  const [playingTrackID, setPlayingTrackID] = useState<number | null>(null);
+
+  async function playSound(track: { sound: Audio.Sound }, id: number) {
     const { sound } = track;
     setSound(sound);
+
+    sound.setOnPlaybackStatusUpdate((playbackStatus) => {
+      if (playbackStatus.isPlaying) {
+        // Update your UI for the playing state
+        setPlayingTrackID(id);
+      }
+      if (playbackStatus.didJustFinish) {
+        // You can add additional logic here, such as updating state or triggering other actions
+        setPlayingTrackID(null);
+      }
+    });
+
     await sound.playAsync();
   }
 
@@ -26,16 +39,16 @@ export default function Index() {
   }, [sound]);
 
   const cardData = [
-    { title: 'Splash', soundFileName: 'splash', iconName: 'water' },
-    { title: 'Boing', soundFileName: 'boing', iconName: 'baseball' },
-    { title: 'Bonk', soundFileName: 'crash1', iconName: 'hammer' },
-    { title: 'Caduta 1', soundFileName: 'fall', iconName: 'person-falling' },
+    { title: 'Splash', soundFileName: 'splash', iconName: 'water', id: 1 },
+    { title: 'Boing', soundFileName: 'boing', iconName: 'baseball', id: 2 },
+    { title: 'Bonk', soundFileName: 'crash1', iconName: 'hammer', id: 3 },
+    { title: 'Caduta 1', soundFileName: 'fall', iconName: 'person-falling', id: 4 },
     { title: 'Caduta 2', soundFileName: 'fall2', iconName: 'person-falling' },
-    { title: 'Freccia', soundFileName: 'palo', iconName: 'bullseye' },
-    { title: 'Swish', soundFileName: 'sbing', iconName: 'paw' },
-    { title: 'Liscio', soundFileName: 'slashes', iconName: 'hand-back-fist' },
-    { title: 'Viscini', soundFileName: 'vicini', iconName: 'dog' },
-    { title: 'Besughi', soundFileName: 'besughi', iconName: 'fish' },
+    { title: 'Freccia', soundFileName: 'palo', iconName: 'bullseye', id: 5 },
+    { title: 'Swish', soundFileName: 'sbing', iconName: 'paw', id: 6 },
+    { title: 'Liscio', soundFileName: 'slashes', iconName: 'hand-back-fist', id: 7 },
+    { title: 'Viscini', soundFileName: 'vicini', iconName: 'dog', id: 8 },
+    { title: 'Besughi', soundFileName: 'besughi', iconName: 'fish', id: 9 },
   ];
 
 
@@ -63,11 +76,11 @@ export default function Index() {
 
           <View style={styles.cardContainer}>
             { cardData.map((card, index) => (
-              <SoundCard key={index} cardData={card} onTrackSet={playSound} />
+              <SoundCard key={card.id + index} cardData={card} onTrackSet={(track) => playSound(track, card.id)} isPlaying={playingTrackID === card.id} />
             ))}
             </View>
-            <Link href="/info">
-              <Text style={styles.navButton}>About</Text>
+            <Link href="/info" style={styles.navButton}>
+              <Text>About</Text>
             </Link>
           </ScrollView>
           
@@ -100,7 +113,7 @@ const styles = StyleSheet.create({
   navButton: {
     fontSize: 16,
     color: '#212121',
-    marginBottom: 20,
+    marginBottom: 40,
   },
 });
 
